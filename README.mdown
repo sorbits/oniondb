@@ -1,0 +1,18 @@
+# Introduction
+
+OnionDB is a database accessed via `http` and designed to be used as the back-end for _“transactional systems”_ such as a ticket system or general project management tool holding to-do lists and milestones.
+
+# Features
+
+OnionDB can be viewed as storage of dumb objects (i.e. associative arrays) but with two important properties (in addition to allowing objects to link to each other):
+
+ 1. Updating an object in the database is done by adding a new object containing only the changed fields. This preserves the full change history for an object which is useful when we are interested in learning when certain fields changed and who changed them (for example a bug report may go from `open` to `closed` or an order may go from `pending` to `cleared`).
+ 2. Fine-grained permissions: Not everyone should be able to view the full database nor should everyone be able to “update” all the objects. In the case of a bug database, we may want to allow users to update certain fields of their own reports, and view all user submitted requests, but not internal to-dos.
+
+Since objects can link to each other it is possible to group these (hierarchically if desired) by introducing dummy-objects which serve the purpose of tree nodes.
+
+Similarly access rights can be expressed by linking an object to the person object(s) (or group objects) that are allowed to view/link to the object in question (via grouping and cascading rules, redundancy can be avoided).
+
+# Status
+
+Presently no code has been written.
